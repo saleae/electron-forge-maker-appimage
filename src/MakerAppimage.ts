@@ -93,10 +93,15 @@ export default class MakerAppImage extends MakerBase<MakerAppImageConfig> {
     ];
 
     const stageDir = path.join(makeDir, "__appImage-x64");
+
+    if(!existsSync(makeDir)) {
+      mkdirSync(makeDir, { recursive: true });
+    }
+
     if (existsSync(stageDir)) {
       rmdirSync(stageDir);
     }
-    mkdirSync(stageDir);
+    mkdirSync(stageDir, { recursive: true });
 
     const args = [
       "appimage",
