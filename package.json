@@ -1,0 +1,20 @@
+{
+  "name": "electron-forge-maker-appimage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc --project tsconfig.json"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@electron-forge/maker-base": "^6.0.0-beta.43",
+    "@electron-forge/shared-types": "^6.0.0-beta.43",
+    "app-builder-lib": "^21.2.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^8.0.0",
+    "typescript": "^3.5.3"
+  }
+}
