@@ -42,8 +42,7 @@ class MakerAppImage extends maker_base_1.default {
     packageJSON, targetPlatform, //'linux',
     forgeConfig }) {
         return __awaiter(this, void 0, void 0, function* () {
-            // toLowerCase added because for reasons I don't understand, we always get a lowercase binary despite the config.
-            const executableName = (forgeConfig.packagerConfig.executableName || appName).toLowerCase();
+            const executableName = forgeConfig.packagerConfig.executableName || appName;
             // Check for any optional configuration data passed in from forge config, specific to this maker.
             let config;
             const maker = forgeConfig.makers.find(maker => isIForgeResolvableMaker(maker) && maker.name === makerPackageName);

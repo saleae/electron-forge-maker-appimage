@@ -39,10 +39,7 @@ export default class MakerAppImage extends MakerBase<MakerAppImageConfig> {
     targetPlatform, //'linux',
     forgeConfig
   }: MakerOptions) {
-    // toLowerCase added because for reasons I don't understand, we always get a lowercase binary despite the config.
-    const executableName = (
-      forgeConfig.packagerConfig.executableName || appName
-    ).toLowerCase();
+    const executableName = forgeConfig.packagerConfig.executableName || appName;
 
     // Check for any optional configuration data passed in from forge config, specific to this maker.
     let config: AppImageForgeConfig | undefined;
@@ -94,7 +91,7 @@ export default class MakerAppImage extends MakerBase<MakerAppImageConfig> {
 
     const stageDir = path.join(makeDir, "__appImage-x64");
 
-    if(!existsSync(makeDir)) {
+    if (!existsSync(makeDir)) {
       mkdirSync(makeDir, { recursive: true });
     }
 
