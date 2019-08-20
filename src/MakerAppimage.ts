@@ -8,11 +8,13 @@ import path from "path";
 import * as appBuilder from "app-builder-lib/out/util/appBuilder";
 import { MakerAppImageConfig } from "./Config";
 import { mkdirSync, existsSync, rmdirSync } from "fs";
+import { exec } from "child_process";
 
 const makerPackageName = "electron-forge-maker-appimage";
 
 interface AppImageForgeConfig {
   template?: string;
+  chmodChromeSandbox?: string;
 }
 
 const isIForgeResolvableMaker = (
@@ -99,6 +101,12 @@ export default class MakerAppImage extends MakerBase<MakerAppImageConfig> {
       rmdirSync(stageDir);
     }
     mkdirSync(stageDir, { recursive: true });
+
+    // if the user passed us a chmodChromeSandbox parameter, use that to modify the permissions of chrome-sandbox.
+    // this sets up the ability to run the application conditionally with --no-sandbox on select systems.
+    if(config !== undefined && config.chmodChromeSandbox !== undefined) {
+      await exec(`chmod ${config.chmodChromeSandbox} ${path.join(dir, 'chrome-sandbox')}`);
+    }
 
     const args = [
       "appimage",
