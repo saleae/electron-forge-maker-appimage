@@ -54,7 +54,7 @@ export default class MakerAppImage extends MakerBase<MakerAppImageConfig> {
       config = maker.config;
     }
 
-    const appFileName = `${appName}-${packageJSON.version}.AppImage`;
+    const appFileName = `${appName}-${packageJSON.version}-${targetPlatform}-${targetArch}.AppImage`;
     const appPath = path.join(makeDir, appFileName);
 
     // construct the desktop file.
@@ -91,7 +91,7 @@ export default class MakerAppImage extends MakerBase<MakerAppImageConfig> {
       { file: `${iconPath}/256x256.png`, size: 256 }
     ];
 
-    const stageDir = path.join(makeDir, "__appImage-x64");
+    const stageDir = path.join(makeDir, `__appImage-${targetArch}`);
 
     if (!existsSync(makeDir)) {
       mkdirSync(makeDir, { recursive: true });
@@ -113,8 +113,8 @@ export default class MakerAppImage extends MakerBase<MakerAppImageConfig> {
       "--stage", // '/home/build/Software/monorepo/packages/electron/out/make/__appImage-x64',
       stageDir,
       "--arch", // 'x64'
-      "x64",
-      "--output", // '/home/build/Software/monorepo/packages/electron/out/make/name-2.0.6.AppImage',
+      targetArch,
+      "--output", // '/home/build/Software/monorepo/packages/electron/out/make/name-2.0.6-linux-x64.AppImage',
       appPath,
       "--app", // '/home/build/Software/monorepo/packages/electron/out/name-linux-x64',
       dir,
