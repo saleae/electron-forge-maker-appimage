@@ -50,7 +50,7 @@ class MakerAppImage extends maker_base_1.default {
             if (maker !== undefined && isIForgeResolvableMaker(maker)) {
                 config = maker.config;
             }
-            const appFileName = `${appName}-${packageJSON.version}.AppImage`;
+            const appFileName = `${appName}-${packageJSON.version}-${targetPlatform}-${targetArch}.AppImage`;
             const appPath = path_1.default.join(makeDir, appFileName);
             // construct the desktop file.
             const desktopMeta = {
@@ -79,7 +79,7 @@ class MakerAppImage extends maker_base_1.default {
                 { file: `${iconPath}/128x128.png`, size: 128 },
                 { file: `${iconPath}/256x256.png`, size: 256 }
             ];
-            const stageDir = path_1.default.join(makeDir, "__appImage-x64");
+            const stageDir = path_1.default.join(makeDir, `__appImage-${targetArch}`);
             if (!fs_1.existsSync(makeDir)) {
                 fs_1.mkdirSync(makeDir, { recursive: true });
             }
@@ -97,7 +97,7 @@ class MakerAppImage extends maker_base_1.default {
                 "--stage",
                 stageDir,
                 "--arch",
-                "x64",
+                targetArch,
                 "--output",
                 appPath,
                 "--app",
