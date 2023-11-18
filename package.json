@@ -9,12 +9,13 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@electron-forge/maker-base": "^6.0.0-beta.53",
-    "@electron-forge/shared-types": "^6.0.0-beta.53",
+    "@electron-forge/maker-base": "^7.1.0",
+    "@electron-forge/shared-types": "^7.1.0",
     "app-builder-lib": "^21.2.0"
   },
   "devDependencies": {
+    "enquirer": "^2.4.1",
     "@types/fs-extra": "^8.0.0",
-    "typescript": "^3.9.5"
+    "typescript": "^4.6"
   }
 }
