@@ -96,7 +96,7 @@ class MakerAppImage extends maker_base_1.default {
                 { file: `${iconPath}/128x128.png`, size: 128 },
                 { file: `${iconPath}/256x256.png`, size: 256 }
             ];
-            const stageDir = path_1.default.join(makeDir, "__appImage-x64");
+            const stageDir = path_1.default.join(makeDir, `__appImage-${targetArch}`);
             if (!(0, fs_1.existsSync)(makeDir)) {
                 (0, fs_1.mkdirSync)(makeDir, { recursive: true });
             }
@@ -114,7 +114,7 @@ class MakerAppImage extends maker_base_1.default {
                 "--stage",
                 stageDir,
                 "--arch",
-                "x64",
+                targetArch,
                 "--output",
                 appPath,
                 "--app",
